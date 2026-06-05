@@ -1,72 +1,67 @@
 # Richard Feynman Digital Twin
 
-A Digital Twin of Richard Feynman built using Gemini, ChromaDB, Streamlit, and Retrieval-Augmented Generation (RAG). The project aims to simulate Feynman's style of thinking and explaining concepts by combining a custom persona with information retrieved from a curated knowledge base of his interviews, quotes, and writings.
+This project is an AI chatbot inspired by Richard Feynman's way of thinking and explaining things. The main idea was to create a chatbot that not only answers questions but also explains concepts in a simple and intuitive way, similar to how Feynman taught science.
 
 ## Features
 
-* Richard Feynman-inspired conversational persona
-* Retrieval-Augmented Generation (RAG)
-* Custom knowledge base built from interviews, quotes, and book excerpts
-* Conversational memory during a session
-* Streamlit-based chat interface
-* Knowledge source display for transparency
+* Richard Feynman inspired personality
+* Custom knowledge base using RAG
+* Different teaching styles
+* Learning preference options
+* Adjustable response length
+* Conversation memory
+* Feynman's Chalkboard mode
+* Source citations
+* Clear conversation option
 
-## Tech Stack
+## Technologies Used
 
 * Python
-* Google Gemini API
 * Streamlit
+* Google Gemini API
 * ChromaDB
 * Sentence Transformers
+* Retrieval-Augmented Generation (RAG)
 
-## Project Structure
+## How It Works
 
-```text
-app.py          # Main Streamlit application
-ingest.py       # Processes and stores knowledge base documents
-rag.py          # Retrieval logic
-memory.py       # Memory utilities
-persona.md      # Feynman persona definition
-data/           # Interviews, quotes, and book excerpts
-```
+1. The user asks a question.
+2. The system searches a knowledge base made from Richard Feynman's writings.
+3. Relevant information is retrieved from ChromaDB.
+4. The retrieved context, user preferences, and Feynman persona are sent to Gemini.
+5. Gemini generates a response based on that information.
+6. The sources used are shown below the answer.
 
-## Setup
+## What I Learned
 
-1. Clone the repository
+This project helped me understand how AI applications work beyond just using an API. I learned how RAG systems retrieve information, how embeddings can be used to search a knowledge base, and how vector databases such as ChromaDB are used in real applications. I also got hands-on experience with prompt engineering, Streamlit, and putting different AI components together into one working project.
 
-```bash
-git clone <repository-url>
-cd feynman-digital-twin
-```
+## Future Improvements
 
-2. Install dependencies
+Some things I would like to add in the future:
+
+* A more advanced chalkboard mode
+* Better source display
+* More personalisation options
+* Further UI improvements
+* Improved long-term memory
+
+## Running the Project
+
+Install the required packages:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Create a `.env` file
+Create a `.env` file and add your Gemini API key:
 
 ```env
-GEMINI_API_KEY=YOUR_API_KEY_HERE
+GEMINI_API_KEY=your_api_key_here
 ```
 
-4. Build the knowledge base
+Run the application:
 
 ```bash
-python ingest.py
+streamlit run app.py
 ```
-
-5. Run the application
-
-```bash
-python -m streamlit run app.py
-```
-
-## How It Works
-
-When a user asks a question, the system first searches the knowledge base for relevant information. The retrieved content, conversation history, and Feynman persona are then provided to Gemini to generate a response. This helps produce answers that are both context-aware and aligned with Feynman's style.
-
-## What I Learned
-
-This project helped me understand how AI applications are built beyond just using an API. I learned how RAG works, how embeddings and ChromaDB help retrieve information from a knowledge base, and how conversational memory can improve interactions. I also got some practical experience with Streamlit and connecting different AI components into a single working system. Overall, it was a good hands-on learning experience and gave me a better understanding of how modern AI assistants work.
