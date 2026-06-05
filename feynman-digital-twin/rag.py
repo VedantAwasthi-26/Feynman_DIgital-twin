@@ -21,9 +21,18 @@ def get_context(query):
     results = search_documents(query)
 
     documents = results["documents"][0]
+    sources = results["metadatas"][0]
 
-    return "\n\n".join(documents)
+    context = "\n\n".join(documents)
 
+    unique_sources = list(
+        set(
+            source["source"]
+            for source in sources
+        )
+    )
+
+    return context, unique_sources
 if __name__ == "__main__":
     results = search_documents(
         "What is the atomic hypothesis?"
