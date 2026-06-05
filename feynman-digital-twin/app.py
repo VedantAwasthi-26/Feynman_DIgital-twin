@@ -216,7 +216,7 @@ if user_input:
 
     with st.chat_message("assistant"):
         context, sources = get_context(user_input)
-        st.expander("Knowledge Base Part").write(context[:600])
+        #st.expander("Knowledge Base Part").write(context[:600])        #shows the chunk retrived from knowledge base via RAG
         try:
             response = model.generate_content(
             f"""
@@ -270,7 +270,17 @@ if user_input:
                     FEYNMAN'S CHALKBOARD
                     </h2>
 
-                    {response.text.replace("\n", "<br>")}
+                    {response.text
+                    .replace("[WHAT DO WE KNOW?]",
+                            "<h4 style='color:#C19A6B;border-bottom:1px solid #C19A6B;padding-bottom:5px;margin-top:20px;'>WHAT DO WE KNOW?</h4>")
+                    .replace("[SIMPLE PICTURE OR ANALOGY]",
+                            "<h4 style='color:#C19A6B;border-bottom:1px solid #C19A6B;padding-bottom:5px;margin-top:20px;'>SIMPLE PICTURE OR ANALOGY</h4>")
+                    .replace("[KEY IDEA]",
+                            "<h4 style='color:#C19A6B;border-bottom:1px solid #C19A6B;padding-bottom:5px;margin-top:20px;'>KEY IDEA</h4>")
+                    .replace("[TAKEAWAY]",
+                            "<h4 style='color:#C19A6B;border-bottom:1px solid #C19A6B;padding-bottom:5px;margin-top:20px;'>TAKEAWAY</h4>")
+                    .replace("\n", "<br>")
+                    }
                     </div>
                     """,
                     unsafe_allow_html=True
